@@ -1,13 +1,13 @@
-{include file='user/header'/}
+
+
 <h2>创建用户</h2>
 <FORM method="post" class="form" action="{:url('index/user/add')}">
 *姓 名：<INPUT type="text" class="text" name="name"><br/>
-*学 号：<INPUT type="text" class="text" name="studentid"><br/>
-*班 号：<INPUT type="text" class="text" name="classid"><br/>
+*学 号：<INPUT type="text" class="text" name="student_id"><br/>
+*班 号：<INPUT type="text" class="text" name="classes_id"><br/>
 *手机号：<INPUT type="text" class="text" name="phone"><br/>
 邮 箱：<INPUT type="text" class="text" name="email"><br/>
 <input type="hidden" name="__token__" value="{$Request.token}" />
 <INPUT type="submit" class="btn btn-primary" value=" 提交 ">
 </FORM>
 
-{include file='user/footer' /}

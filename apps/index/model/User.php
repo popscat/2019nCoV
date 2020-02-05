@@ -5,9 +5,9 @@ use think\Model;
 
 class User extends Model
 {
-	#protected $insert = ['status'];  //定义自动完成属性
+	protected $insert = ['status'=> 0];  //定义自动完成属性
 	
-    protected $autoWriteTimestamp = true;
+    protected $autoWriteTimestamp = false;
 		
 	
 	protected function getStatusAttr($value){

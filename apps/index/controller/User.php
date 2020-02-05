@@ -2,7 +2,10 @@
 namespace app\index\controller;
 
 use app\index\model\User as UserModel;
+use app\index\model\Classes;
 use think\Controller;
+use think\Request;
+
 class User extends Controller{
 	public function index(){
 		return view('user/index');
@@ -11,15 +14,17 @@ class User extends Controller{
 		return view('user/create');
 	}
 	
-	public function add($data=''){
-		$user                 = new UserModel;
-		dump(input('post.'));	
-		if ($user->allowField(true)->validate(false)->save(input('post.'))){
-		#if ($user->save()){
-			return '注册成功！';
-		} else {
-		    return $user->getError();
+	public function add(){		
+		$data = Request::instance()->except(['name','email','__token__',]);
+		dump($data);
+
+		if (!$classes = Classes::get(Request::instance()->only('classes_id'))){
+			$classes = new Classes;
+			$classes->save([Request::instance()->only('classes_id')]);
 		}
+		$user = new UserModel;
+        $classes->students()->validate(true)->save($data);
+        return 'Success';
 	}
 	
 	/* 
@@ -63,8 +68,10 @@ class User extends Controller{
 		*/
 	}
 	
-	public function delete($id){
-		$result = UserModel::destroy($id);
+	public function delete(){
+		dump(input('get.'));
+		$data=input('get.');
+		$result = UserModel::destroy($data);
 		if ($result){
 			return '删除成功！';
 			
