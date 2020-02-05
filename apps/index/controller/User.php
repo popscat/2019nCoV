@@ -2,7 +2,7 @@
 namespace app\index\controller;
 
 use app\index\model\User as UserModel;
-use app\index\model\Classes;
+use app\index\model\Profile;
 use think\Controller;
 use think\Request;
 
@@ -10,23 +10,28 @@ class User extends Controller{
 	public function index(){
 		return view('user/index');
 	}
+	
+	
 	public function create(){
 		return view('user/create');
 	}
 	
 	public function add(){		
-		$data = Request::instance()->except(['name','email','__token__',]);
-		dump($data);
+        $user = new UserModel();
+		if ($user->allowField(true)->validate(true)->save($_POST)){
+			$profile = new Profile($_POST);
+			$profile->allowField(true);
+			if ($user->profile()->save($profile)){
+				return 'Success';
+		    } else {
+				return $user->profile()->getError();
+		    }
 
-		if (!$classes = Classes::get(Request::instance()->only('classes_id'))){
-			$classes = new Classes;
-			$classes->save([Request::instance()->only('classes_id')]);
+	    } else {
+		    return $user->getError();
 		}
-		$user = new UserModel;
-        $classes->students()->validate(true)->save($data);
-        return 'Success';
+		
 	}
-	
 	/* 
 	   输入特定格式$str 通过自定义函数 转换$str 为$list完成功能，未实现。
 	public function addList($list){
@@ -38,34 +43,24 @@ class User extends Controller{
 		}
 	}
 	*/
-    public function read($studentid='')
+    public function read()
 	{
-		$user = UserModel::get($studentid);
-		
+		$data = input('get.');
+		$user = UserModel::get($data,'profile');
+		#$user->profile()->save();
+		$this->assign('user',$user);
+		return $this->fetch('user/read');
+
 	}
 	
 	public function update($data)
 	{
 		$user = UserModel::get($data['studentid']);
-		/*
-		   默认情况下，查询模型数据后返回的模型示例执行 save 操作都
-		   是执行的数据库 update 操作，如果你需要实例化执行 save 执
-		   行数据库的 insert 操作，请确保在save方法之前调用isUpdate方法：
-        $user->isUpdate(false)->save();
-		    ActiveRecord 模式的更新数据方式需要首先读取对应的数据，
-			如果需要更高效的方法可以把update方法
-		改成：
-			// 更新用户数据
-			public function update($id)
-			{
-			$user['id'] = (int) $id;
-			$user['nickname'] = '刘晨';
-			$user['email'] = 'liu21st@gmail.com';
-			$result = UserModel::update($user);
-			return '更新用户成功';
-			}
-		
-		*/
+		$user['id'] = (int) $id;
+		$user['nickname'] = '刘晨';
+		$user['email'] = 'liu21st@gmail.com';
+		$result = UserModel::update($user);
+		return '更新用户成功';
 	}
 	
 	public function delete(){

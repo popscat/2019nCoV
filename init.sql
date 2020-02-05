@@ -10,9 +10,9 @@ CREATE TABLE IF NOT EXISTS `ncov_user`(
 `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
 `student_id` varchar(10) NOT NULL UNIQUE COMMENT '学号',
 `phone` varchar(11) NOT NULL COMMENT '手机',
+`classes_num` varchar(10) NOT NULL  COMMENT '班号',
 `create_time` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '注册时间',
 `update_time` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间',
-`classes_id` varchar(10) NOT NULL UNIQUE COMMENT '班号',
 PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
 
@@ -51,7 +51,7 @@ PRIMARY KEY (`id`)
 DROP TABLE IF EXISTS `ncov_classes`;
 CREATE TABLE IF NOT EXISTS `ncov_classes` (
 `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT,
-`classes_id` varchar(8) NOT NULL COMMENT '班号',
+`classes_num` varchar(8) NOT NULL COMMENT '班号',
 `monitor_id` varchar(10) NULL DEFAULT NULL COMMENT '班长学号',
 PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

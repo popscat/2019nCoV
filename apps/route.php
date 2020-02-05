@@ -14,17 +14,15 @@ return [
         'name' => '\w+',
 		'id' => '\d+',
     ],
-    'hello/[:name]' =>  'index/hello' ,
       
-	 
-	'user/'       => 'index/user/index',
+	'user/'            => 'index/user/index',
 	'user/create'      => 'index/user/create',
-	'user/add'         => 'index/user/add',
-	'user/add_list'    => 'index/user/addList',
-	'user/read/:id'    => 'index/user/read',
-	'user/update/:id'  => 'index/user/update',
-	'user/delete/:id'  => 'index/user/read',
-	'user/:id'         => 'index/user/read',
+	'user/add'         => ['index/user/add',['method' => 'POST']],
+	'user/add_list/'    => 'index/user/addList',
+	'user/read/'    => 'index/user/read',
+	'user/update/'  => ['index/user/update',['method' => 'POST|GET']],
+	'user/delete/'  => ['index/user/delete',['method' => 'POST|GET']],
+	#'user/:id'         => 'index/user/read',
 	
 	
 	'[blog]'  =>[

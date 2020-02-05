@@ -2,12 +2,14 @@
 namespace app\index\model;
 
 use think\Model;
+use app\index\model\Profile;
 
 class User extends Model
 {
+	#protected $pk = 'uid';
 	protected $insert = ['status'=> 0];  //定义自动完成属性
 	
-    protected $autoWriteTimestamp = false;
+    protected $autoWriteTimestamp = true;
 		
 	
 	protected function getStatusAttr($value){
@@ -15,14 +17,14 @@ class User extends Model
         return $status[$value];
 	}
     
+	
+	public function profile()
+	{
+		return $this->hasOne('Profile');
+	}
 	public function classes()
 	{
-		return $this->belongsTo('Classes','ncov_CS');
+		return $this->belongsTo('Classes');
 	}
-	/*
-	public function health_condition()
-	{
-		return $this->hasOne('Health_condition');
-	}
-	*/
+	
 }
