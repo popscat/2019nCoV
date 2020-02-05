@@ -45,7 +45,7 @@ class User extends Controller{
 	*/
     public function read()
 	{
-		$data = input('get.');
+		$data = input('get.') or die('error!');
 		$user = UserModel::get($data,'profile');
 		#$user->profile()->save();
 		$this->assign('user',$user);
@@ -53,14 +53,15 @@ class User extends Controller{
 
 	}
 	
-	public function update($data)
-	{
-		$user = UserModel::get($data['studentid']);
-		$user['id'] = (int) $id;
-		$user['nickname'] = '刘晨';
-		$user['email'] = 'liu21st@gmail.com';
-		$result = UserModel::update($user);
-		return '更新用户成功';
+	public function update()
+	{    
+	    $data = input('post.');
+		if ($user = UserModel::get($data))
+		{               
+		    $result = $user->validate(true)->update(Request::instance()->only(['classes_num','phone','condition']));
+			return '更新用户成功';
+		}
+		
 	}
 	
 	public function delete(){

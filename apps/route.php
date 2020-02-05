@@ -10,10 +10,10 @@
 // +----------------------------------------------------------------------
 
 return [
-    '__pattern__' => [
-        'name' => '\w+',
-		'id' => '\d+',
-    ],
+    #'__pattern__' => [
+    #    'name' => '\w+',
+	#	'id' => '\d+',
+    # ],
       
 	'user/'            => 'index/user/index',
 	'user/create'      => 'index/user/create',
@@ -23,15 +23,15 @@ return [
 	'user/update/'  => ['index/user/update',['method' => 'POST|GET']],
 	'user/delete/'  => ['index/user/delete',['method' => 'POST|GET']],
 	#'user/:id'         => 'index/user/read',
+	];
 	
-	
-	'[blog]'  =>[
-	    ':year/:month'  => ['blog/archive',['method' => 'get'],['year'=>'\d{4}','month'=>'\d{2}']],
-	    ':id'  => ['blog/get',['method' => 'get'],['id' => '\d+']],
-	    ':name'  => ['blog/read',['method' => 'get'],['name' => '\w+']]
-	
-	]
-];
+#	'[blog]'  =>[
+#	    ':year/:month'  => ['blog/archive',['method' => 'get'],['year'=>'\d{4}','month'=>'\d{2}']],
+#	    ':id'  => ['blog/get',['method' => 'get'],['id' => '\d+']],
+#	    ':name'  => ['blog/read',['method' => 'get'],['name' => '\w+']]
+#	
+#	]
+
 	#[
     #'[hello]'     => [
     #    ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
