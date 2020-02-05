@@ -17,7 +17,7 @@ return [
     'hello/[:name]' =>  'index/hello' ,
       
 	 
-	'user/index'       => 'index/user/index',
+	'user/'       => 'index/user/index',
 	'user/create'      => 'index/user/create',
 	'user/add'         => 'index/user/add',
 	'user/add_list'    => 'index/user/addList',

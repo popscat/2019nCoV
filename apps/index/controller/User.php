@@ -2,15 +2,19 @@
 namespace app\index\controller;
 
 use app\index\model\User as UserModel;
-
-class User{
+use think\Controller;
+class User extends Controller{
+	public function index(){
+		return view('user/index');
+	}
 	public function create(){
 		return view('user/create');
 	}
 	
-	public function add($data){
+	public function add($data=''){
 		$user                 = new UserModel;
-		if ($user->allowField(true)->->validate(true)->save(input('post.'))){
+		dump(input('post.'));	
+		if ($user->allowField(true)->validate(false)->save(input('post.'))){
 		#if ($user->save()){
 			return '注册成功！';
 		} else {
