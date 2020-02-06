@@ -8,12 +8,12 @@ use think\Request;
 
 class User extends Controller{
 	public function index(){
-		return view('user/index');
+		return view('user/index',['title'=>'用户首页']);
 	}
 	
 	
 	public function create(){
-		return view('user/create');
+		return view('user/create',['title' => '用户注册']);
 	}
 	
 	public function add(){		
