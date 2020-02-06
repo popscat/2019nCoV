@@ -2,7 +2,7 @@
 namespace app\index\controller;
 
 use app\index\model\User as UserModel;
-use app\index\model\Profile;
+use app\index\model\Classes as ClassModel;
 use think\Controller;
 use think\Request;
 
@@ -18,16 +18,19 @@ class User extends Controller{
 	
 	public function add(){		
         $user = new UserModel();
-		if ($user->allowField(true)->validate(true)->save($_POST)){
-			$profile = new Profile($_POST);
-			$profile->allowField(true);
-			if ($user->profile()->save($profile)){
-				return 'Success';
-		    } else {
-				return $user->profile()->getError();
-		    }
-
-	    } else {
+        if($user->allowField(true)->validate(true)->save($_POST))
+		{
+			if (!ClassModel::get(['classes_num' =>$user->classes_num]))
+			{
+				$classes = new ClassModel;
+				$classes->classes_num = $user->classes_num;
+				$classes->validate(true)->save();
+				$user->classes_id = $classes->id;
+				$user->save();
+				
+			}
+			return 'Success!';
+		} else {
 		    return $user->getError();
 		}
 		
@@ -46,8 +49,17 @@ class User extends Controller{
     public function read()
 	{
 		$data = input('get.') or die('error!');
-		$user = UserModel::get($data,'profile');
-		#$user->profile()->save();
+		$user = UserModel::get($data) or die(1);
+        if (!ClassModel::get($user->classes_num))
+		{
+			$classes = new ClassModel;
+			$classes->classes_num = $user->classes_num;
+			$classes->validate(true)->save();
+			$user->classes_id = $classes->id;
+			} else {
+			    echo 2;
+			}
+		$user->save();
 		$this->assign('user',$user);
 		return $this->fetch('user/read');
 

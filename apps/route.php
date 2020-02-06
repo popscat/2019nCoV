@@ -23,6 +23,12 @@ return [
 	'user/update/'  => ['index/user/update',['method' => 'POST|GET']],
 	'user/delete/'  => ['index/user/delete',['method' => 'POST|GET']],
 	#'user/:id'         => 'index/user/read',
+	'[classes]' =>[
+		 'create/' => 'classes/create',
+		 'list/' => 'classes/list',
+		 '__miss__' => 'classes/index'
+	],
+	
 	];
 	
 #	'[blog]'  =>[

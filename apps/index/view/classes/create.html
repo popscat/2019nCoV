@@ -1,0 +1,29 @@
+<form name="create_class">
+<label><input type='button' class='btn btn-primary' value='单个/批量' onclick="$('table').fadeToggle(1000);"></label>
+<table id='single'>
+	<tr>
+		<th>班号</th>
+		<th><input type="text" id='classes_num' placeholder="请输入班号"></th>
+	</tr>
+	<tr>
+		<th>班长学号</th>
+		<th><input type="text" id="user_num" placeholder="请输入班长学号"></th>
+	</tr>
+	<tr>
+		<th><button class="btn btn-primary" id='1'>提交</button></th>
+		<th><input type="reset" class='btn btn-primary' value='重置'></th>
+	</tr>
+</table>
+<table id='bulk'>
+	<tr>
+		<th>请输入</th>
+		<th><textarea id="str" id="" cols="30" rows="10" placeholder="格式如“班号|班长学号”，多个班级用逗号隔开"></textarea></th>
+	</tr>
+	<tr>
+		<th><button id='2' class='btn btn-primary'>提交</button></th>
+		<th><input type="reset" class='btn btn-primary' value='重置'></th>
+	</tr>
+</table>
+</form>
+<script src="/static/classes/create.js"></script>
+<script>$('table#bulk').hide();</script>

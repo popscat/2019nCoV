@@ -1,0 +1,20 @@
+<h2>班级列表({$list->total()})</h2>
+<ul class="list-group">
+{volist name="list" id="c"}
+
+   <li class="list-group-item d-flex justify-content-between align-items-center">
+      <th>班号：</th>
+      <th><a href='#'>{$c.classes_num}</a></th>
+      <th>班长</th>
+      <th><a href='#'>{$c.user_num}</a></th>
+	   <th>总人数</th>
+	   <th><span class="badge badge-primary badge-pill">14</span></th>
+	   <th>今日未登记或身体出现症状人数</th>
+	   
+	   <th> <span class="badge badge-danger badge-pill"><a href='#'>14</a></span></th>
+   </li>
+
+
+{/volist}
+</ul>
+{$list->render()}

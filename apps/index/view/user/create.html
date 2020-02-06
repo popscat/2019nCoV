@@ -2,12 +2,11 @@
 
 <h2>创建用户</h2>
 <FORM method="post" class="form" action="{:url('/user/add')}">
-*学 号：<INPUT type="text" class="text" name="student_id"><br/>
+*学 号：<INPUT type="text" class="text" name="num"><br/>
 *手机号：<INPUT type="text" class="text" name="phone"><br/>
 *姓 名：<INPUT type="text" class="text" name="name"><br/>
 *班 号：<INPUT type="text" class="text" name="classes_num"><br/>
 邮 箱：<INPUT type="text" class="text" name="email"><br/>
-<input type="hidden" name="__token__" value="{$Request.token}" />
 <INPUT type="submit" class="btn btn-primary" value=" 提交 ">
 </FORM>
 
