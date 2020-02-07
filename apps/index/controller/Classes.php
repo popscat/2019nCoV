@@ -48,13 +48,12 @@ class Classes extends Controller
 	    $data = input('get.');
 		if ($data && $classes = ClassModel::get($data))
 		{   
-	        dump($data);
-			
 			$this->assign('classes',$classes);
 			$this->assign('students',$classes->students);
-		    return $this->fetch('read');
+			$this->assign('title','班级情况');
+		    return $this->fetch('read',);
 		} else {
-		    return view('index');
+		    return view('index',['title' =>'班级情况']);
 		}
 		
 	}

@@ -20,15 +20,14 @@ class User extends Controller{
         $user = new UserModel();
         if($user->allowField(true)->validate(true)->save($_POST))
 		{
-			if (!ClassModel::get(['classes_num' =>$user->classes_num]))
+			if (!$classes = ClassModel::get(['classes_num' =>$user->classes_num]))
 			{
 				$classes = new ClassModel;
 				$classes->classes_num = $user->classes_num;
-				$classes->validate(true)->save();
-				$user->classes_id = $classes->id;
-				$user->save();
-				
+				$classes->validate(true)->save();				
 			}
+			$user->classes_id = $classes->id;
+			$user->save();
 			return 'Success!';
 		} else {
 		    return $user->getError();
@@ -48,20 +47,12 @@ class User extends Controller{
 	*/
     public function read()
 	{
-		$data = input('get.') or die('error!');
-		$user = UserModel::get($data) or die(1);
-        if (!ClassModel::get($user->classes_num))
-		{
-			$classes = new ClassModel;
-			$classes->classes_num = $user->classes_num;
-			$classes->validate(true)->save();
-			$user->classes_id = $classes->id;
-			} else {
-			    echo 2;
-			}
-		$user->save();
-		$this->assign('user',$user);
-		return $this->fetch('user/read');
+		$key = input('get');
+		$user = UserModel::get($key) or die(1);
+		if (isset($_SESSION['user_id']) && $_SESSION['user_id']==$user->id){		
+		if($data = input('post.')){$user->save($data);}		
+		return view('user/update',['user' => $user]);}
+		return view('user/read',['user' => $user]);
 
 	}
 	

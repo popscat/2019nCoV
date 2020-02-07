@@ -13,7 +13,7 @@ class User extends Merge
     protected $autoWriteTimestamp = true;
 	protected $mapFields = [
 	    'id' => 'User.id',
-		'profile_id' => 'Profile.id'
+		'profile_id' => 'Profile.id',
 	];	
 	
 	#protected function getStatusAttr($value){
@@ -25,6 +25,10 @@ class User extends Merge
 	public function classes()
 	{
 		return $this->belongsTo('Classes','classes_id');
+	}
+	public function profile()
+	{
+		return $this->hasOne('Profile');
 	}
 	
 }
