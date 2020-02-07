@@ -8,7 +8,14 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
+use think\Route;
 
+#Route::get('api/:id','api/index/read');
+#Route::put('api/:id','api/index/update');
+Route::delete('api//:id','api/index/delete');
+Route::resource('api/','api/article');
+
+/*
 return [
     #'__pattern__' => [
     #    'name' => '\w+',
@@ -30,7 +37,7 @@ return [
 	],
 	
 	];
-	
+	*/
 #	'[blog]'  =>[
 #	    ':year/:month'  => ['blog/archive',['method' => 'get'],['year'=>'\d{4}','month'=>'\d{2}']],
 #	    ':id'  => ['blog/get',['method' => 'get'],['id' => '\d+']],

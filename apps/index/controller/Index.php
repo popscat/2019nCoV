@@ -7,7 +7,7 @@ use think\Controller;
 class Index extends Controller
 {
 	public function Index(){
-		return  view('index\index',['title' =>'pops']);
+		return  view('header',['title' =>'pops']);
 	}
 	
 }
