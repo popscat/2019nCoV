@@ -1,0 +1,76 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand " style="margin-left: 15em" href="#">Navbar</a>
+
+    <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
+        <!--        导航栏头部-->
+        <ul role="navigation" class="Tabs AppHeader-Tabs ">
+            <li role="tab" class="Tabs-item AppHeader-Tab Tabs-item--noMeta">
+                <a class="Tabs-link AppHeader-TabsLink is-active" href="//www.zhihu.com/" data-za-not-track-link="true">首页</a>
+            </li>
+            <li role="tab" class="Tabs-item AppHeader-Tab Tabs-item--noMeta">
+                <a class="Tabs-link AppHeader-TabsLink" href="//www.zhihu.com/explore" data-za-not-track-link="true">发现</a>
+            </li>
+            <li role="tab" class="Tabs-item AppHeader-Tab Tabs-item--noMeta">
+                <a class="Tabs-link AppHeader-TabsLink" href="//www.zhihu.com/question/waiting" data-za-not-track-link="true">等你来答</a>
+            </li>
+        </ul>
+        <!--        导航栏头部-->
+
+        <!--        搜索框-->
+        <div class="SearchBar mr-md-3 col-sm-12 col-md-8" role="search" data-za-module="PresetWordItem">
+            <div class="SearchBar-toolWrapper">
+                <form class="SearchBar-tool">
+                    <div>
+                        <div class="Popover">
+                            <label class="SearchBar-input Input-wrapper Input-wrapper--grey">
+                                <input type="text" maxlength="100" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-activedescendant="AutoComplete2--1" id="Popover1-toggle" aria-haspopup="true" aria-owns="Popover1-content" class="Input" placeholder="请输入关键字" value=""><button aria-label="搜索" type="button" class="Button SearchBar-searchButton Button--primary">
+                                <span style="display: inline-flex; align-items: center;">
+                                    ​<svg class="Zi Zi--Search SearchBar-searchIcon" fill="currentColor" viewBox="0 0 24 24" width="18" height="18">
+                                    <path d="M17.068 15.58a8.377 8.377 0 0 0 1.774-5.159 8.421 8.421 0 1 0-8.42 8.421 8.38 8.38 0 0 0 5.158-1.774l3.879 3.88c.957.573 2.131-.464 1.488-1.49l-3.879-3.878zm-6.647 1.157a6.323 6.323 0 0 1-6.316-6.316 6.323 6.323 0 0 1 6.316-6.316 6.323 6.323 0 0 1 6.316 6.316 6.323 6.323 0 0 1-6.316 6.316z" fill-rule="evenodd"/>
+                                </svg>
+                                </span>
+                            </button>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--        搜索框-->
+
+
+
+        <?php  if (!session('?username')){?>
+        <!--        登录前部分-->
+        <div class="btn-group ">
+            <button id="btngroup" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                登录
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btngroup">
+                <a class='dropdown-item' href="#/register">注册</a>
+            </div>
+        </div>
+        <!--        登录前部分-->
+        <?php } else {?>
+        <!--  登陆后部分      -->
+        <div class="btn-group mr-md-3" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                个人中心
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="#/settings">设置</a>
+                <a class="dropdown-item" href="#/logout">退出</a>
+            </div>
+        </div>
+        <!--  登陆后部分      -->
+        <?php }?>
+
+
+
+    </div>
+
+</nav>

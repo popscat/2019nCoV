@@ -1,13 +1,13 @@
 <?php
 namespace app\index\controller;
 
-use think\Controller;
+use app\common\controller\Base;
 
 
-class Index extends Controller
+class Index extends Base
 {
 	public function Index(){
-		return  view('header',['title' =>'pops']);
+		return  view('index',['title' =>'pops']);
 	}
 	
 }

@@ -1,4 +1,25 @@
-<H1>Hello World!</H1>
-<p>welcome to user block!</p>
-{#include file="footer" /}
-{#include file="header" title="$popscat"/}
+{include file="public::header"/}
+
+
+<!--导航栏-->
+{include file="public::navbar"/}
+<!--导航栏-->
+<div class="container">
+    <div class=col-md-12></div>
+    <div class="row">
+        <!--    左边-->
+
+            {include file="public::left"/}
+
+        <!--    左边-->
+
+        <!--    右边-->
+
+            {include file='public::right'/}
+
+        <!--    右边-->
+
+    </div>
+    <!--footer-->
+    {include file="public::footer"/}
+    <!--footer-->
